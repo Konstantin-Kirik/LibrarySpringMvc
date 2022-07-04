@@ -36,10 +36,10 @@ public class BookController {
     public String showBook(@PathVariable("book_id") int book_id, Model model, @ModelAttribute("person") Person person) {
         model.addAttribute("book", bookDAO.showBook(book_id));
 
-        Optional<Person> personBook = bookDAO.getBookPersonId(book_id);
+        Optional<Person> bookLocation = bookDAO.getBookPersonId(book_id);
 
-        if (personBook.isPresent())
-            model.addAttribute("locate", personBook.get());
+        if (bookLocation.isPresent())
+            model.addAttribute("location", bookLocation.get());
         else
             model.addAttribute("people", personDAO.index());
 
@@ -69,7 +69,7 @@ public class BookController {
 
     @PatchMapping("/{book_id}")
     public String updateBook(@ModelAttribute("book") @Valid Book book, BindingResult bindingResult,
-                         @PathVariable("book_id") int book_id) {
+                             @PathVariable("book_id") int book_id) {
 
         if (bindingResult.hasErrors()) {
             return "library/edit_book";
@@ -90,8 +90,8 @@ public class BookController {
         return "redirect:/library/" + book_id;
     }
 
-    @PatchMapping("/{book_id}/assign")
-    public String assign(@PathVariable("book_id") int book_id, @ModelAttribute("person") Person selectPerson) {
+    @PatchMapping("/{person_id}/assign")
+    public String assign(@PathVariable("person_id") int book_id, @ModelAttribute("person") Person selectPerson) {
         bookDAO.assign(book_id, selectPerson);
         return "redirect:/library/" + book_id;
     }

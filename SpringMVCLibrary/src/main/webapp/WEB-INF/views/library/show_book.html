@@ -8,8 +8,8 @@
         <h1>Информация о книге</h1>
         <p th:text="${book.getBook_name()}+ ' , ' + ${book.getAuhtor_name()}+ ' , ' +${book.getPublishing_year()}">Value</p>
 
-        <div th:if="${locate}">
-            <span>Книга сейчас у: </span> <span th:text="${locate.getName()}">Person name</span>
+        <div th:if="${location}">
+            <span>Книга сейчас находиться: </span> <span th:text="${location.getName()}">Person name</span>
 
             <form th:method="PATCH" th:action="@{/library/{book_id}/release(book_id=${book.getBook_id()})}">
                 <input type="submit" value="Освободить книгу"/>

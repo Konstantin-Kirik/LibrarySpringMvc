@@ -1,5 +1,6 @@
 package ru.project.models;
 
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 
@@ -7,16 +8,15 @@ public class Book {
 
     private int book_id;
 
-    @NotEmpty(message = "Name should not be empty")
-    @Size(min = 2, max = 200, message = "You name should be between 2 and 200 characters")
+    @NotEmpty(message = "Поле не должно быть пустым")
+    @Size(min = 2, max = 200, message = "Минимальное длина 2 максимальная 200 букв")
     private String book_name;
 
-    @NotEmpty(message = "Name should not be empty")
-    @Size(min = 2, max = 100, message = "You name should be between 2 and 100 characters")
+    @NotEmpty(message = "Поле не должно быть пустым")
+    @Size(min = 2, max = 100, message = "Минимальная длина 2 максимальная 100 букв")
     private String auhtor_name;
 
-    @NotEmpty(message = "Name should not be empty")
-    @Size(min = 1500, max = 2022, message = "You name should be between 1500 and 2022 characters")
+    @Min(value = 1500, message = "Год издательства должен быть, больше 1500 года")
     private int publishing_year;
 
     public Book() {

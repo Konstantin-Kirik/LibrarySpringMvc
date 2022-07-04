@@ -5,11 +5,11 @@ public class Person {
 
     private int person_id;
 
-    @NotEmpty(message = "Name should not be empty")
-    @Size(min = 2, max = 100, message = "You name should be between 2 and 100 characters")
+    @NotEmpty(message = "Поле не должно быть пустым")
+    @Size(min = 2, max = 100, message = "Минимальное длина 2 максимальная 100 букв")
     private String name;
 
-    @Min(value = 6, message = "Age should be greater than 6")
+    @Min(value = 1900, message = "Год рождение не может быть старше 1900 года рождения")
     private int age;
 
     public Person(){

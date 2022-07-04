@@ -1,0 +1,11 @@
+.valid{
+    color: red;
+}
+.btn-round {
+    border-radius: 20px;
+    background-color: red;
+}
+.btn-create{
+    border-radius: 20px;
+    background-color: green;
+}

@@ -3,18 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <title>All people</title>
+    <link th:href="@{static/style.css}"  rel="stylesheet">
 </head>
     <body>
         <br/>
             <h2>Список всех людей посещающих библиотеку</h2>
         <br/>
-        <div th:each = "person : ${people}">
-            <a th:href = "@{/people/{person_id}(person_id=${person.getPerson_id()})}"
-               th:text = "${person.getName() + ' , ' + person.getAge()}">user</a>
-        </div>
+            <div th:each = "person : ${people}">
+                <a th:href = "@{/people/{person_id}(person_id=${person.getPerson_id()})}"
+                   th:text = "${person.getName() + ' , ' + person.getAge()}">user</a>
+            </div>
         <br/>
         <hr/>
-        <a href="/people/new">Добавить нового человека</a>
+
+        <form th:class="btn-create" th:method="GET" th:action="@{/people/new}">
+            <input type="submit" value="Добавить нового человека"/>
+        </form>
     </body>
 </html>
 
