@@ -5,43 +5,47 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
-import ru.project.dao.BookDAO;
-import ru.project.dao.PersonDAO;
 import ru.project.models.Book;
 import ru.project.models.Person;
+import ru.project.services.BookService;
+import ru.project.services.PersonService;
 
 import javax.validation.Valid;
-import java.util.Optional;
+
 
 @Controller
 @RequestMapping("/library")
 public class BookController {
 
-    private final BookDAO bookDAO;
-    private final PersonDAO personDAO;
+    private final BookService bookService;
+    private final PersonService personService;
 
     @Autowired
-    public BookController(BookDAO bookDAO, PersonDAO personDAO) {
-        this.bookDAO = bookDAO;
-        this.personDAO = personDAO;
+    public BookController(BookService bookService, PersonService personService) {
+        this.bookService = bookService;
+        this.personService = personService;
     }
 
     @GetMapping()
-    public String indexBook(Model model) {
-        model.addAttribute("library", bookDAO.indexBook());
+    public String indexBook(Model model,
+                            @RequestParam(value = "page", required = false) Integer page,
+                            @RequestParam(value = "books_per_page", required = false) Integer booksPerPage) {
+
+        model.addAttribute("library", bookService.findWithPagination(page, booksPerPage));
+
         return "library/index_book";
     }
 
     @GetMapping("/{book_id}")
     public String showBook(@PathVariable("book_id") int book_id, Model model, @ModelAttribute("person") Person person) {
-        model.addAttribute("book", bookDAO.showBook(book_id));
+        model.addAttribute("book", bookService.findOne(book_id));
 
-        Optional<Person> bookLocation = bookDAO.getBookPersonId(book_id);
+        Person bookReader = bookService.getBookPersonId(book_id);
 
-        if (bookLocation.isPresent())
-            model.addAttribute("location", bookLocation.get());
+        if (bookReader != null)
+            model.addAttribute("location", bookReader);
         else
-            model.addAttribute("people", personDAO.index());
+            model.addAttribute("people", personService.findAll());
 
         return "library/show_book";
     }
@@ -57,13 +61,13 @@ public class BookController {
         if (bindingResult.hasErrors()) {
             return "library/new_book";
         }
-        bookDAO.saveBook(book);
+        bookService.save(book);
         return "redirect:/library";
     }
 
     @GetMapping("/{book_id}/edit_book")
     public String editBook(Model model, @PathVariable("book_id") int book_id) {
-        model.addAttribute("book", bookDAO.showBook(book_id));
+        model.addAttribute("book", bookService.findOne(book_id));
         return "library/edit_book";
     }
 
@@ -74,25 +78,25 @@ public class BookController {
         if (bindingResult.hasErrors()) {
             return "library/edit_book";
         }
-        bookDAO.updateBook(book_id, book);
+        bookService.upDate(book_id, book);
         return "redirect:/library";
     }
 
     @DeleteMapping("/{book_id}")
     public String deleteBook(@PathVariable("book_id") int book_id) {
-        bookDAO.deleteBook(book_id);
+        bookService.delete(book_id);
         return "redirect:/library";
     }
 
     @PatchMapping("/{book_id}/release")
     public String release(@PathVariable("book_id") int book_id) {
-        bookDAO.release(book_id);
+        bookService.release(book_id);
         return "redirect:/library/" + book_id;
     }
 
     @PatchMapping("/{person_id}/assign")
-    public String assign(@PathVariable("person_id") int book_id, @ModelAttribute("person") Person selectPerson) {
-        bookDAO.assign(book_id, selectPerson);
+    public String assign(@PathVariable("person_id") int book_id, @ModelAttribute("person") Person assignPerson) {
+        bookService.assign(book_id, assignPerson);
         return "redirect:/library/" + book_id;
     }
 }

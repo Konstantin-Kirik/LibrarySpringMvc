@@ -3,7 +3,6 @@
 <head>
     <meta charset="UTF-8">
     <title>All book</title>
-    <link th:href="@{static/style.css}"  rel="stylesheet">
 </head>
     <body>
         <br/>
@@ -16,8 +15,8 @@
         <br/>
         <hr/>
 
-        <form th:class="btn-create" th:method="GET" th:action="@{/library/new_book}">
-            <input type="submit" value="Добавить новую книгу"/>
+        <form th:method="GET" th:action="@{/library/new_book}">
+           <input type="submit" value="Добавить новую книгу"/>
         </form>
     </body>
 </html>

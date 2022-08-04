@@ -3,7 +3,6 @@
 <head>
     <meta charset="UTF-8">
     <title>All people</title>
-    <link th:href="@{static/style.css}"  rel="stylesheet">
 </head>
     <body>
         <br/>
@@ -16,7 +15,7 @@
         <br/>
         <hr/>
 
-        <form th:class="btn-create" th:method="GET" th:action="@{/people/new}">
+        <form  th:method="GET" th:action="@{/people/new}">
             <input type="submit" value="Добавить нового человека"/>
         </form>
     </body>
