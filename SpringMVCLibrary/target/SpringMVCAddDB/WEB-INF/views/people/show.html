@@ -19,7 +19,7 @@
                 <b>Книги:</b>
                 <br/>
                 <table th:each="book : ${books}">
-                    <tr th:text="${book.book_name + ', ' + book.auhtor_name + ', ' + book.publishing_year}">book</tr>
+                    <tr th:text="${book.bookName + ', ' + book.authorName + ', ' + book.publishingYear}">book</tr>
                 </table>
             </div>
         <hr/>

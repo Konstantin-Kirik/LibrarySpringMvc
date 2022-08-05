@@ -23,11 +23,15 @@ public class BookService {
         this.bookRepository = bookRepository;
     }
 
-    public List<Book> findAll() {
+    public List<Book> findAll(boolean sortByYear) {
+        if(sortByYear){
+            return bookRepository.findAll(Sort.by("publishingYear"));
+        }else {
             return bookRepository.findAll();
+        }
     }
 
-    public List<Book> findWithPagination(Integer page, Integer booksPerPage){
+    public List<Book> findPagination(Integer page, Integer booksPerPage) {
             return bookRepository.findAll(PageRequest.of(page, booksPerPage)).getContent();
     }
 
@@ -43,7 +47,10 @@ public class BookService {
 
     @Transactional
     public void upDate(int id, Book updateBook) {
-        updateBook.setBook_id(id);
+        Book bookUpDatePerson = bookRepository.findById(id).get();
+        updateBook.setBookId(id);
+        updateBook.setReader(bookUpDatePerson.getReader());
+
         bookRepository.save(updateBook);
     }
 
@@ -64,6 +71,10 @@ public class BookService {
     @Transactional
     public void assign(int id, Person assignPerson) {
         bookRepository.findById(id).ifPresent(b -> b.setReader(assignPerson));
+    }
+
+    public List<Book> searchByTitle(String query) {
+        return bookRepository.findByBookNameStartingWith(query);
     }
 
 }

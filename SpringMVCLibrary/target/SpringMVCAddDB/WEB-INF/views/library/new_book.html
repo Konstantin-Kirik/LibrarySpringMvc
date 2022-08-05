@@ -6,25 +6,25 @@
     <link th:href="@{static/style.css}"  rel="stylesheet">
 </head>
 <body>
+<br/>
+<h2>Страница добавления новой книги</h2>
+<form th:method="POST" th:action="@{/library}" th:object="${book}">
+    <h1><label for="book_name">Введите название книги </label></h1>
+    <input type="text" th:field="*{bookName}" id="book_name"/>
+    <div th:class="valid" th:if="${#fields.hasErrors('book_name')}" th:errors="*{bookName}">Error name</div>
     <br/>
-        <h2>Страница добавления новой книги</h2>
-        <form th:method="POST" th:action="@{/library}" th:object="${book}">
-            <h1><label for="book_name">Введите название книги </label></h1>
-            <input type="text" th:field="*{book_name}" id="book_name"/>
-            <div th:class="valid" th:if="${#fields.hasErrors('book_name')}" th:errors="*{book_name}">Error name</div>
-            <br/>
-            <br/>
-            <h1><label for="auhtor_name">Введите имя автора</label></h1>
-            <input type="text" th:field="*{auhtor_name}" id="auhtor_name"/>
-            <br/>
-            <div th:class="valid" th:if="${#fields.hasErrors('auhtor_name')}" th:errors="*{auhtor_name}">Error auhtor</div>
-            <br/>
-            <h1><label for="publishing_year">Введите год издательства</label></h1>
-            <input type="text" th:field="*{publishing_year}" id="publishing_year"/>
-            <br/>
-            <div th:class="valid" th:if="${#fields.hasErrors('publishing_year')}" th:errors="*{publishing_year}">Error publishing</div>
-            <br/>
-            <input type="submit" value="Сохранить" th:class="btn-create"/>
-    </form>
+    <br/>
+    <h1><label for="auhtor_name">Введите имя автора</label></h1>
+    <input type="text" th:field="*{authorName}" id="auhtor_name"/>
+    <br/>
+    <div th:class="valid" th:if="${#fields.hasErrors('auhtor_name')}" th:errors="*{authorName}">Error auhtor</div>
+    <br/>
+    <h1><label for="publishing_year">Введите год издательства</label></h1>
+    <input type="text" th:field="*{publishingYear}" id="publishing_year"/>
+    <br/>
+    <div th:class="valid" th:if="${#fields.hasErrors('publishing_year')}" th:errors="*{publishingYear}">Error publishing</div>
+    <br/>
+    <input type="submit" value="Сохранить" th:class="btn-create"/>
+</form>
 </body>
 </html>

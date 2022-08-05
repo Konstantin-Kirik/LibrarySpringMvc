@@ -5,18 +5,18 @@
     <title>All book</title>
 </head>
     <body>
-        <br/>
-            <h2>Все книги находящиеся в библиотеке</h2>
-        <br/>
-            <div th:each = "book : ${library}">
-                <a th:href = "@{/library/{book_id}(book_id=${book.getBook_id()})}"
-                   th:text = "${book.getBook_name() + ' , ' + book.getAuhtor_name() + ' , ' + book.getPublishing_year()}">book</a>
-            </div>
-        <br/>
-        <hr/>
+    <br/>
+    <h2>Все книги находящиеся в библиотеке</h2>
+    <br/>
+        <div th:each = "book : ${library}">
+            <a th:href = "@{/library/{book_id}(book_id=${book.getBookId()})}"
+               th:text = "${book.getBookName() + ' , ' + book.getAuthorName() + ' , ' + book.getPublishingYear()}">book</a>
+        </div>
+    <br/>
+    <hr/>
 
         <form th:method="GET" th:action="@{/library/new_book}">
-           <input type="submit" value="Добавить новую книгу"/>
+            <input type="submit" value="Добавить новую книгу"/>
         </form>
-    </body>
+</body>
 </html>

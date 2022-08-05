@@ -8,18 +8,18 @@
     <body>
     <br/>
     <h1>Страница изменения книги</h1>
-        <form th:method="PATCH" th:action="@{/library/{book_id}(book_id=${book.book_id})}" th:object="${book}">
+        <form th:method="PATCH" th:action="@{/library/{book_id}(book_id=${book.bookId})}" th:object="${book}">
             <label for="book_name">Введите название книги</label>
-            <input type="text" th:field="*{book_name}" id="book_name"/>
-            <div th:class="valid" th:if="${#fields.hasErrors('book_name')}" th:errors="*{book_name}">Error book_name</div>
+            <input type="text" th:field="*{bookName}" id="book_name"/>
+            <div th:class="valid" th:if="${#fields.hasErrors('book_name')}" th:errors="*{bookName}">Error book_name</div>
             <br/>
             <label for="auhtor_name">Введите имя автора</label>
-            <input type="text" th:field="*{auhtor_name}" id="auhtor_name"/>
-            <div th:class="valid" th:if="${#fields.hasErrors('auhtor_name')}" th:errors="*{auhtor_name}">Error auhtor_name</div>
+            <input type="text" th:field="*{authorName}" id="auhtor_name"/>
+            <div th:class="valid" th:if="${#fields.hasErrors('auhtor_name')}" th:errors="*{authorName}">Error auhtor_name</div>
             <br/>
             <label for="publishing_year">Введите год публикации</label>
-            <input type="text" th:field="*{publishing_year}" id="publishing_year"/>
-            <div th:class="valid" th:if="${#fields.hasErrors('publishing_year')}" th:errors="*{publishing_year}">Error publishing_year</div>
+            <input type="text" th:field="*{publishingYear}" id="publishing_year"/>
+            <div th:class="valid" th:if="${#fields.hasErrors('publishing_year')}" th:errors="*{publishingYear}">Error publishing_year</div>
             <br/>
             <input type="submit" value="Обновить"/>
         </form>
