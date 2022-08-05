@@ -13,21 +13,21 @@ public class Book {
     @Id
     @Column(name = "book_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int book_id;
+    private int bookId;
 
     @NotEmpty(message = "Поле не должно быть пустым")
     @Size(min = 2, max = 200, message = "Минимальное длина 2 максимальная 200 букв")
     @Column(name = "book_name")
-    private String book_name;
+    private String bookName;
 
     @NotEmpty(message = "Поле не должно быть пустым")
     @Size(min = 2, max = 100, message = "Минимальная длина 2 максимальная 100 букв")
     @Column(name = "auhtor_name")
-    private String auhtor_name;
+    private String authorName;
 
     @Min(value = 1500, message = "Год издательства должен быть, больше 1500 года")
     @Column(name = "publishing_year")
-    private int publishing_year;
+    private int publishingYear;
 
     @ManyToOne
     @JoinColumn(name = "person_id", referencedColumnName = "person_id")
@@ -36,43 +36,43 @@ public class Book {
     public Book() {
     }
 
-    public Book(int book_id, String book_name, String auhtor_name, int publishing_year) {
-        this.book_id = book_id;
-        this.book_name = book_name;
-        this.auhtor_name = auhtor_name;
-        this.publishing_year = publishing_year;
+    public Book(int bookId, String bookName, String authorName, int publishingYear) {
+        this.bookId = bookId;
+        this.bookName = bookName;
+        this.authorName = authorName;
+        this.publishingYear = publishingYear;
     }
 
-    public int getBook_id() {
-        return book_id;
+    public int getBookId() {
+        return bookId;
     }
 
-    public void setBook_id(int book_id) {
-        this.book_id = book_id;
+    public void setBookId(int bookId) {
+        this.bookId = bookId;
     }
 
-    public String getBook_name() {
-        return book_name;
+    public String getBookName() {
+        return bookName;
     }
 
-    public void setBook_name(String book_name) {
-        this.book_name = book_name;
+    public void setBookName(String bookName) {
+        this.bookName = bookName;
     }
 
-    public String getAuhtor_name() {
-        return auhtor_name;
+    public String getAuthorName() {
+        return authorName;
     }
 
-    public void setAuhtor_name(String auhtor_name) {
-        this.auhtor_name = auhtor_name;
+    public void setAuthorName(String authorName) {
+        this.authorName = authorName;
     }
 
-    public int getPublishing_year() {
-        return publishing_year;
+    public int getPublishingYear() {
+        return publishingYear;
     }
 
-    public void setPublishing_year(int publishing_year) {
-        this.publishing_year = publishing_year;
+    public void setPublishingYear(int publishingYear) {
+        this.publishingYear = publishingYear;
     }
 
     public Person getReader() {
@@ -88,11 +88,11 @@ public class Book {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Book book = (Book) o;
-        return book_id == book.book_id && publishing_year == book.publishing_year && Objects.equals(book_name, book.book_name) && Objects.equals(auhtor_name, book.auhtor_name);
+        return bookId == book.bookId && publishingYear == book.publishingYear && Objects.equals(bookName, book.bookName) && Objects.equals(authorName, book.authorName);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(book_id, book_name, auhtor_name, publishing_year);
+        return Objects.hash(bookId, bookName, authorName, publishingYear);
     }
 }
