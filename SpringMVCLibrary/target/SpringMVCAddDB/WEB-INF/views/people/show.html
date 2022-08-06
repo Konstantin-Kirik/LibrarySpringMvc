@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Человек</title>
+    <link th:href="@{static/style.css}"  rel="stylesheet">
 </head>
     <body>
     <h1>Персональные данные о человеке</h1>
@@ -18,21 +19,15 @@
                 <hr/>
                 <b>Книги:</b>
                 <br/>
-<<<<<<< HEAD
                     <table th:each="book : ${books}">
                         <tr>
                             <td>
                                 <span th:text="${book.getBookName() + ', ' + book.getAuthorName() + ', ' + book.getPublishingYear()}"
-                                      th:style="${book.isTimeIsOver()} ? 'color: red' : 'color: black'">book
+                                      th:style="${book.isTimeIsOver()} ? 'color:red' : 'color: black'">book
                                 </span>
                             </td>
                         </tr>
                     </table>
-=======
-                <table th:each="book : ${books}">
-                    <tr th:text="${book.bookName + ', ' + book.authorName + ', ' + book.publishingYear}">book</tr>
-                </table>
->>>>>>> 10a4ebfda8a9836eb3434887de58d30c8f150e4b
             </div>
         <hr/>
             <form th:method="GET" th:action="@{/people/{person_id}/edit(person_id=${person.getPerson_id()})}">

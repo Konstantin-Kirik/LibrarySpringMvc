@@ -19,7 +19,6 @@
                 <hr/>
                 <b>Книги:</b>
                 <br/>
-<<<<<<< HEAD
                     <table th:each="book : ${books}">
                         <tr>
                             <td>
@@ -29,11 +28,6 @@
                             </td>
                         </tr>
                     </table>
-=======
-                <table th:each="book : ${books}">
-                    <tr th:text="${book.bookName + ', ' + book.authorName + ', ' + book.publishingYear}">book</tr>
-                </table>
->>>>>>> 10a4ebfda8a9836eb3434887de58d30c8f150e4b
             </div>
         <hr/>
             <form th:method="GET" th:action="@{/people/{person_id}/edit(person_id=${person.getPerson_id()})}">
