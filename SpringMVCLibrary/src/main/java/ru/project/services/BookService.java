@@ -25,15 +25,25 @@ public class BookService {
     }
 
     public List<Book> findAll(boolean sortByYear) {
+<<<<<<< HEAD
         if (sortByYear) {
             return bookRepository.findAll(Sort.by("publishingYear"));
         } else {
+=======
+        if(sortByYear){
+            return bookRepository.findAll(Sort.by("publishingYear"));
+        }else {
+>>>>>>> 10a4ebfda8a9836eb3434887de58d30c8f150e4b
             return bookRepository.findAll();
         }
     }
 
     public List<Book> findPagination(Integer page, Integer booksPerPage) {
+<<<<<<< HEAD
         return bookRepository.findAll(PageRequest.of(page, booksPerPage)).getContent();
+=======
+            return bookRepository.findAll(PageRequest.of(page, booksPerPage)).getContent();
+>>>>>>> 10a4ebfda8a9836eb3434887de58d30c8f150e4b
     }
 
     public Book findOne(int id) {
@@ -75,6 +85,10 @@ public class BookService {
             book.setReader(assignPerson);
             book.setTakenBook(new Date());
         });
+    }
+
+    public List<Book> searchByTitle(String query) {
+        return bookRepository.findByBookNameStartingWith(query);
     }
 
     public List<Book> searchByTitle(String query) {
