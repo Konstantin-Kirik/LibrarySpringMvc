@@ -9,6 +9,7 @@ import ru.project.models.Book;
 import ru.project.models.Person;
 import ru.project.repositories.BookRepository;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -24,15 +25,15 @@ public class BookService {
     }
 
     public List<Book> findAll(boolean sortByYear) {
-        if(sortByYear){
+        if (sortByYear) {
             return bookRepository.findAll(Sort.by("publishingYear"));
-        }else {
+        } else {
             return bookRepository.findAll();
         }
     }
 
     public List<Book> findPagination(Integer page, Integer booksPerPage) {
-            return bookRepository.findAll(PageRequest.of(page, booksPerPage)).getContent();
+        return bookRepository.findAll(PageRequest.of(page, booksPerPage)).getContent();
     }
 
     public Book findOne(int id) {
@@ -70,7 +71,10 @@ public class BookService {
 
     @Transactional
     public void assign(int id, Person assignPerson) {
-        bookRepository.findById(id).ifPresent(b -> b.setReader(assignPerson));
+        bookRepository.findById(id).ifPresent(book -> {
+            book.setReader(assignPerson);
+            book.setTakenBook(new Date());
+        });
     }
 
     public List<Book> searchByTitle(String query) {

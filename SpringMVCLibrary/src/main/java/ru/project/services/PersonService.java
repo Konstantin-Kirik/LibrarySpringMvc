@@ -10,6 +10,7 @@ import ru.project.models.Person;
 import ru.project.repositories.PersonRepository;
 
 import java.util.Collections;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -55,6 +56,13 @@ public class PersonService {
         if (foundPerson.isPresent()) {
            Hibernate.initialize(foundPerson.get().getBooks());
 
+           foundPerson.get().getBooks().forEach(book -> {
+               long differenceInMilli = Math.abs(book.getTakenBook().getTime() - new Date().getTime());
+               if (differenceInMilli > 864000000){
+                   book.setTimeIsOver(true);
+               }
+
+           });
             return foundPerson.get().getBooks();
         } else {
             return Collections.emptyList();

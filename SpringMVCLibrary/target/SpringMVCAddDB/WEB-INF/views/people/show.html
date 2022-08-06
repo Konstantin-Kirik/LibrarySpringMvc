@@ -18,9 +18,15 @@
                 <hr/>
                 <b>Книги:</b>
                 <br/>
-                <table th:each="book : ${books}">
-                    <tr th:text="${book.bookName + ', ' + book.authorName + ', ' + book.publishingYear}">book</tr>
-                </table>
+                    <table th:each="book : ${books}">
+                        <tr>
+                            <td>
+                                <span th:text="${book.getBookName() + ', ' + book.getAuthorName() + ', ' + book.getPublishingYear()}"
+                                      th:style="${book.isTimeIsOver()} ? 'color: red' : 'color: black'">book
+                                </span>
+                            </td>
+                        </tr>
+                    </table>
             </div>
         <hr/>
             <form th:method="GET" th:action="@{/people/{person_id}/edit(person_id=${person.getPerson_id()})}">
