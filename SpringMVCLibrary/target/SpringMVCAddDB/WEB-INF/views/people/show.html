@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Человек</title>
+    <link th:href="@{static/style.css}"  rel="stylesheet">
 </head>
     <body>
     <h1>Персональные данные о человеке</h1>
@@ -22,7 +23,7 @@
                         <tr>
                             <td>
                                 <span th:text="${book.getBookName() + ', ' + book.getAuthorName() + ', ' + book.getPublishingYear()}"
-                                      th:style="${book.isTimeIsOver()} ? 'color: red' : 'color: black'">book
+                                      th:style="${book.isTimeIsOver()} ? 'color:red' : 'color: black'">book
                                 </span>
                             </td>
                         </tr>

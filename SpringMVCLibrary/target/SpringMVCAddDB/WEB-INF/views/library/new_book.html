@@ -18,13 +18,14 @@
                 <input type="text" th:field="*{authorName}" id="auhtor_name"/>
                 <br/>
                 <div th:class="valid" th:if="${#fields.hasErrors('auhtor_name')}" th:errors="*{authorName}">Error auhtor</div>
-<!--                <br/>-->
-<!--                <h1><label for="publishing_year">Введите год издательства</label></h1>-->
-<!--                <input type="text" th:field="*{publishing_year}" id="publishing_year"/>-->
-<!--                <br/>-->
-<!--                <div th:class="valid" th:if="${#fields.hasErrors('publishing_year')}" th:errors="*{publishing_year}">Error publishing</div>-->
-<!--                <br/>-->
+                <br/>
+                <h1><label for="publishing_year">Введите год издательства</label></h1>
+                <input type="text" th:field="*{publishingYear}" id="publishing_year"/>
+                <br/>
+                <div th:class="valid" th:if="${#fields.hasErrors('publishing_year')}" th:errors="*{publishingYear}">Error publishing</div>
+                <br/>
                 <input type="submit" value="Сохранить" th:class="btn-create"/>
             </form>
     </body>
 </html>
+

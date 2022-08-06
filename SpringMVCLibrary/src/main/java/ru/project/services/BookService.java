@@ -72,9 +72,10 @@ public class BookService {
     @Transactional
     public void assign(int id, Person assignPerson) {
         bookRepository.findById(id).ifPresent(book -> {
-            book.setReader(assignPerson);
-            book.setTakenBook(new Date());
-        });
+                    book.setReader(assignPerson);
+                    book.setTakenBook(new Date());
+                }
+        );
     }
 
     public List<Book> searchByTitle(String query) {

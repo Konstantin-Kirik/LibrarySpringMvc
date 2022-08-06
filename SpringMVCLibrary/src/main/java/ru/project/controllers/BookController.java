@@ -55,8 +55,7 @@ public class BookController {
     }
 
     @GetMapping("/new_book")
-    public String newBook(Model model) {
-        model.addAttribute("book", new Book());
+    public String newBook(@ModelAttribute("book") Book book ) {
         return "library/new_book";
     }
 
